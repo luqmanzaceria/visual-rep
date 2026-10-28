@@ -1,0 +1,35 @@
+[project]
+name = "vrep"
+version = "0.1.0"
+description = "What makes a visual representation predictable under action? (16-824 Fall 2026 project)"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "torch>=2.2",
+    "mujoco>=3.1",
+    "einops>=0.7",
+    "omegaconf>=2.3",
+    "tqdm>=4.60",
+    "imageio>=2.30",
+    "matplotlib>=3.7",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pytest-timeout>=2"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["vrep*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -ra"
+markers = ["slow: tests that load pretrained weights or train for a while"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
